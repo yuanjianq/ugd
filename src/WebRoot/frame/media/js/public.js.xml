@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root name="public.js" remark="所有属性和方法">
+	<!--<property name="basic" remark="<input type="hidden" id="hdfPath" value="<%=request.getContextPath()%>"/>"></property>-->
+	<property name="tree_folder" type="String" value="/res/images/tree/" remark="树形菜单图标存放的文件夹,可以根据实际情况更改"></property>
+	<property name="icon_folder" type="String" value="/res/images/check/" remark="对话框图标存放的文件夹,可以根据实际情况更改"></property>
+	<group remark="基本操作">
+		<function name="getO" remark="获得对象">
+			<param name="id" type="String" remark="对象的id(表单元素和其他标签都可以)"></param>
+			<return type="Object"></return>
+		</function>
+		
+		<function name="getOA" remark="获得对象数组">
+			<param name="name" type="String" remark="表单元素的name"></param>
+			<return type="Array"></return>
+		</function>
+		
+		<function name="getV" remark="获得表单元素里的值">
+			<param name="id" type="String" remark="表单元素的id"></param>
+			<return type="String"></return>
+		</function>
+		
+		<function name="setV" remark="给表单元素赋值">
+			<param name="id" type="String" remark="表单元素的id"></param>
+			<param name="value" type="String" remark="将要写入的值"></param>
+		</function>
+		
+		<function name="getIframe" remark="获得iframe的window对象">
+			<param name="id" type="String" remark="iframe的id"></param>
+			<return type="Object"></return>
+		</function>
+		
+		<function name="formGo" remark="表单提交">
+			<param name="id" type="String" remark="表单的id"></param>
+		</function>
+		
+		<function name="showDiv" remark="设置div的显示或隐藏(其他元素也可以,不预留位置)">
+			<param name="id" type="String" remark="层的id或其他元素的id"></param>
+			<param name="type" type="String" remark="1为显示0为隐藏"></param>
+		</function>
+		
+		<function name="showChild" remark="隐藏或显示子元素(其他元素也可以,预留位置)">
+			<param name="id" type="String" remark="元素的ID"></param>
+			<param name="type" type="String" remark="1为显示0为隐藏"></param>
+		</function>
+		
+		<function name="fullDiv" remark="给div设置普通内容(其他标签也可以)">
+			<param name="id" type="String" remark="层的id或其他标签的id"></param>
+			<param name="content" type="String" remark="将要设置的内容(HTML)"></param>
+		</function>
+		
+		<function name="changeCss" remark="改变样式(表单元素和其他标签都可以)">
+			<param name="id" type="String" remark="表单元素和其他标签的id"></param>
+			<param name="css" type="String" remark="样式的名称"></param>
+		</function>
+		
+		<function name="clearSelect" remark="清空下拉框">
+			<param name="id" type="String" remark="下拉框的ID"></param>
+			<param name="count" type="int" remark="表示要保留的选项数目"></param>
+		</function>
+		
+		<function name="setSelect" remark="给下拉框设置选项">
+			<param name="id" type="String" remark="下拉框的ID"></param>
+			<param name="value" type="String" remark="表示这个选项的value (内在值)"></param>
+			<param name="text" type="String" remark="表示这个选项的text (显示的文本)"></param>
+		</function>
+		
+		<function name="notFileInput" remark="不允许在文件域输入(主要针对IE)">
+			<param name="event" type="Object" remark="内置对象"></param>
+		</function>
+		
+		<function name="setBad" remark="设置表单元素是否可用">
+			<param name="id" type="String" remark="表单元素的ID"></param>
+			<param name="type" type="String" remark="1表示可用,0表示不可用"></param>
+		</function>
+		
+		<function name="getRadio" remark="获得单选按钮的值">
+			<param name="name" type="String" remark="单选按钮的name属性"></param>
+			<return type="String"></return>
+		</function>
+		
+		<function name="getBox" remark="获得复选框的值(多个值用分号隔开)">
+			<param name="name" type="String" remark="复选框的name属性"></param>
+			<return type="String"></return>
+		</function>
+		
+		<function name="showSelects" remark="隐藏或显示所有的下拉框">
+			<param name="type" type="String" remark="1表示显示,0表示隐藏"></param>
+		</function>
+		
+		<function name="selectAll" remark="根据一个复选框来控制N个复选框的选择">
+			<param name="parentId" type="String" remark="这一个复选框的ID"></param>
+			<param name="childName" type="String" remark="N个复选框的Name"></param>
+		</function>
+		
+		<function name="createFormUnit" remark="动态创建表单元素(如果该元素已经存在就只赋值)">
+			<param name="parentId" type="String" remark="父元素ID,如果不存在就用body"></param>
+			<param name="id" type="String" remark="元素ID必须传入"></param>
+			<param name="type" type="String" remark="元素类型必须传入"></param>
+			<param name="value" type="String" remark="元素的值"></param>
+			<return type="Object"></return>
+		</function>
+	</group>
+	
+	<group remark="对单个值的操作">
+		<function name="getStrCount" remark="获得字符串的字符个数(中文算两个)">
+			<param name="value" type="String" remark="要操作的值"></param>
+			<return type="int"></return>
+		</function>
+		
+		<function name="cutStr" remark="截取字符串">
+			<param name="value" type="String" remark="要操作的值"></param>
+			<param name="count" type="int" remark="要保留的长度"></param>
+			<return type="String"></return>
+		</function>
+		
+		<function name="formatNum" remark="格式化数字(保留两位小数)">
+			<param name="value" type="String" remark="要操作的值"></param>
+			<return type="String"></return>
+		</function>
+		
+		<function name="turnHtml" remark="将字符串转换成html,去掉一些特殊符号">
+			<param name="value" type="String" remark="要操作的值"></param>
+			<return type="String"></return>
+		</function>
+	</group>
+	
+	<group remark="弹出对话框和提示层">
+		<function name="errorPormt" remark="错误提示">
+			<param name="id" type="String" remark="表单元素的ID"></param>
+			<param name="text" type="String" remark="将要设置的错误的文本信息"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="alertWin" remark="信息提示框(可以代替alert弹框)">
+			<param name="title" type="String" remark="提示框的标题"></param>
+			<param name="winWidth" type="int" remark="提示框的宽度"></param>
+			<param name="winHeight" type="int" remark="提示框的高度"></param>
+			<param name="message" type="String" remark="提示框的内容"></param>
+			<param name="iconType" type="String" remark="图标类型(0表示错误,1表示正确,2表示普通的)"></param>
+			<param name="callback" type="String" remark="回调函数"></param>
+		</function>
+		
+		<function name="confirmWin" remark="询问提示框(可代替confirm弹框)">
+			<param name="title" type="String" remark="提示框的标题"></param>
+			<param name="winWidth" type="int" remark="提示框的宽度"></param>
+			<param name="winHeight" type="int" remark="提示框的高度"></param>
+			<param name="message" type="String" remark="提示框的内容"></param>
+			<param name="callback" type="String" remark="回调函数"></param>
+		</function>
+		
+		<function name="getProjectSelf" remark="本项目中的搜索引擎智能提示(dwr版)">
+			<param name="event" type="Object" remark="内置对象"></param>
+			<param name="id" type="String" remark="文本框的ID"></param>
+			<param name="fileds" type="String" remark="要搜索的字段(属性),如果有拼音检索的,必须汉字字段在前,拼音字段在后,中间用★隔开"></param>
+			<param name="entity" type="String" remark="要搜索的实体类"></param>
+			<param name="deptId" type="String" remark="当前用户的组织机构ID(如果是系统管理，可以不传入)"></param>
+			<param name="callback" type="String" remark="按下回车键之后的回调事件"></param>
+		</function>
+		
+		<function name="setEnvelopDiv" remark="设置一个遮盖的Div,它的z-index为3"></function>
+		
+		<function name="dialogWin" remark="弹出模式窗体">
+			<param name="title" type="String" remark="窗体的标题"></param>
+			<param name="winWidth" type="int" remark="窗体的宽度"></param>
+			<param name="winHeight" type="int" remark="窗体的高度"></param>
+			<param name="url" type="String" remark="窗体的链接"></param>
+		</function>
+		
+		<function name="closeDialog" remark="关闭模式窗体"></function>
+		
+		<function name="dialogResize" remark="给模式窗体重新设置大小">
+			<param name="winWidth" type="int" remark="窗体的宽度"></param>
+			<param name="winHeight" type="int" remark="窗体的高度"></param>
+		</function>
+		
+		<function name="setLoadGress" remark="设置一个没有百分比进度条">
+			<param name="title" type="String" remark="进度条的标题"></param>
+			<param name="content" type="String" remark="进度条中的内容"></param>
+		</function>
+		
+		<function name="closeLoadGress" remark="关闭没有百分比的进度条"></function>
+		
+		<function name="setPlanGress" remark="设置一个有百分比进度条">
+			<param name="title" type="String" remark="进度条的标题"></param>
+			<param name="content" type="String" remark="进度条中的内容"></param>
+			<param name="pace" type="int" remark="进度条的走动速度,必须是整数(数值越小，走动速度越快)"></param>
+			<param name="percent" type="String" remark="进度条百分比的显示类型(0不显示百分比,1显示所有数值,2逢五显示,3逢十显示)"></param>
+			<param name="callback" type="String" remark="进度条走完后的回调函数"></param>
+		</function>
+		
+		<function name="setDivCenter" remark="把一个div放在屏幕的最中央">
+			<param name="id" type="String" remark="div的id"></param>
+		</function>
+	</group>
+	
+	<group remark="表单验证">
+		<function name="letterAndNo" remark="只能输入字母数字下划线">
+			<param name="id" type="String" remark="文本框的id"></param>
+			<param name="text" type="String" remark="错误提示的内容"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="edhAndNo" remark="只能输入字母数字">
+			<param name="id" type="String" remark="文本框的id"></param>
+			<param name="text" type="String" remark="错误提示的内容"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="notAllNo" remark="不能只是纯数字">
+			<param name="id" type="String" remark="文本框的id"></param>
+			<param name="text" type="String" remark="错误提示的内容"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="notOnlyOne" remark="不能是单一连续的字符">
+			<param name="id" type="String" remark="文本框的id"></param>
+			<param name="text" type="String" remark="错误提示的内容"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="notBlank" remark="不能有空格">
+			<param name="id" type="String" remark="文本框的id"></param>
+			<param name="text" type="String" remark="错误提示的内容"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="checkNull" remark="检查文本框是否为空">
+			<param name="id" type="String" remark="文本框的id"></param>
+			<param name="text" type="String" remark="错误提示的内容"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="notHaveChar" remark="不能包含特殊字符">
+			<param name="id" type="String" remark="文本框的id"></param>
+			<param name="text" type="String" remark="错误提示的内容"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="checkMinLength" remark="限制最少的字符长度">
+			<param name="id" type="String" remark="文本框的id"></param>
+			<param name="text" type="String" remark="错误提示的内容"></param>
+			<param name="minLength" type="int" remark="字符的最小长度"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="checkLength" remark="必须是固定的字符长度">
+			<param name="id" type="String" remark="文本框的id"></param>
+			<param name="text" type="String" remark="错误提示的内容"></param>
+			<param name="moorLenth" type="int" remark="字符的固定长度"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="checkMaxLength" remark="限制最多的字符长度">
+			<param name="id" type="String" remark="文本框的id"></param>
+			<param name="text" type="String" remark="错误提示的内容"></param>
+			<param name="maxLength" type="int" remark="字符的最大长度"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="isMinFloat" remark="限制最少的浮点类型数据">
+			<param name="id" type="String" remark="文本框的id"></param>
+			<param name="text" type="String" remark="错误提示的内容"></param>
+			<param name="minFloat" type="float" remark="最小数据"></param>
+			<param name="unit" type="String" remark="单位"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="isMaxFloat" remark="限制最多的浮点类型数据">
+			<param name="id" type="String" remark="文本框的id"></param>
+			<param name="text" type="String" remark="错误提示的内容"></param>
+			<param name="maxFloat" type="float" remark="最大数据"></param>
+			<param name="unit" type="String" remark="单位"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="checkSelect" remark="下拉框里必须要选择一项">
+			<param name="id" type="String" remark="文本框的id"></param>
+			<param name="text" type="String" remark="错误提示的内容"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="isPost" remark="判断是不是邮政编码">
+			<param name="id" type="String" remark="文本框的id"></param>
+			<param name="isMustPut" type="String" remark="是否为必填项(1表示必填,0表示不是必填)"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="isEmail" remark="判断是不是email地址">
+			<param name="id" type="String" remark="文本框的id"></param>
+			<param name="isMustPut" type="String" remark="是否为必填项(1表示必填,0表示不是必填)"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="isTelephone" remark="判断是不是电话号码">
+			<param name="id" type="String" remark="文本框的id"></param>
+			<param name="isMustPut" type="String" remark="是否为必填项(1表示必填,0表示不是必填)"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="isMobile" remark="判断是不是手机号码(必须13,15,18开头)">
+			<param name="id" type="String" remark="文本框的id"></param>
+			<param name="isMustPut" type="String" remark="是否为必填项(1表示必填,0表示不是必填)"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="isShenCard" remark="判断是不是身份证号码">
+			<param name="id" type="String" remark="文本框的id"></param>
+			<param name="isMustPut" type="String" remark="是否为必填项(1表示必填,0表示不是必填)"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="isCardBirth" remark="判断是不是身份证号码，同时获取生日">
+			<param name="id" type="String" remark="身份证号码文本框的ID"></param>
+			<param name="isMustPut" type="String" remark="是否为必填项(1表示必填,0表示不是必填)"></param>
+			<param name="birthId" type="String" remark="生日文本框的ID"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="isRealName" remark="判断是不是真实姓名">
+			<param name="id" type="String" remark="文本框的id"></param>
+			<param name="isMustPut" type="String" remark="是否为必填项(1表示必填,0表示不是必填)"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="isImgFile" remark="判断文件域中选择的是否为图片">
+			<param name="id" type="String" remark="文件域的ID"></param>
+			<param name="isMustPut" type="String" remark="是否为必选项(1表示必选,0表示不是必选)"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="isUserName" remark="验证登录用户名是否通过">
+			<param name="id" type="String" remark="用户名框的ID"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="isPassword" remark="验证密码是否通过">
+			<param name="id" type="String" remark="密码框的ID"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="isQuePwd" remark="验证确认密码是否通过">
+			<param name="id" type="String" remark="确认密码框的ID"></param>
+			<param name="pwdId" type="String" remark="密码框的ID"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="isChinese" remark="判断是否为中文">
+			<param name="value" type="String" remark="简要操作的值"></param>
+			<return type="boolean"></return>
+		</function>
+		
+		<function name="isEnglish" remark="判断是否为英文">
+			<param name="value" type="String" remark="简要操作的值"></param>
+			<return type="boolean"></return>
+		</function>
+	</group>
+	
+	<group remark="ajax异步请求">
+		<property name="xmlHttp" type="Object" remark="建立一个xmlHttp(兼容的浏览器:IE6,IE7,IE8,火狐,谷歌,360)"></property>
+		<function name="sendRequest" remark="发送ajax请求">
+			<param name="url" type="String" remark="需要访问的url(需要清理缓存,比如：?random=+Math.random() )"></param>
+			<param name="method" type="function" remark="回调的方法"></param>
+		</function>
+	</group>
+	
+	<group remark="对日期时间的操作">
+		<function name="getNowDate" remark="获得当前日期">
+			<param name="type" type="String" remark="1为所有内容,2为一串数字,3为日期部分,4为中文日期"></param>
+			<return type="String"></return>
+		</function>
+		
+		<function name="disposeDate" remark="处理日期(补齐两位数,不足加0)">
+			<param name="monthOrDay" type="String" remark="月份或日份"></param>
+			<return type="String"></return>
+		</function>
+		
+		<function name="getDateNum" remark="js对日期中的月份和日份的处理(比如:01处理后得到1)">
+			<param name="monthOrDay" type="String" remark="月份或日份"></param>
+			<return type="int"></return>
+		</function>
+		
+		<function name="getDayNum" remark="根据年份和月份获得当月天数">
+			<param name="year" type="int" remark="年份"></param>
+			<param name="month" type="int" remark="月份"></param>
+			<return type="int"></return>
+		</function>
+	</group>
+	
+	<group remark="对坐标,页面尺寸的操作">
+		<function name="getAbsPoint" remark="获得表单元素或其他元素的绝对坐标(xy用分号隔开)">
+			<param name="id" type="String" remark="表单元素或其他元素的id"></param>
+			<return type="String"></return>
+		</function>
+		
+		<function name="mousePlead1" remark="鼠标点击拖拽的效果(页面可以同时拖动多个框)">
+			<param name="event" type="Object" remark="内置对象"></param>
+			<param name="boxId" type="String" remark="整个对象(框)的id(一般为div或table)"></param>
+		</function>
+		
+		<function name="getWinSize" remark="获得当前窗体的大小(用分号隔开)">
+			<return type="String"></return>
+		</function>
+	</group>
+	
+	<group remark="js树形控件">
+		<function name="bringTree" remark="产生一颗树形菜单(两个参数)">
+			<param name="id" type="String" remark="div的ID(这棵树要放在哪个div中)"></param>
+			<param name="treeData" type="String" remark="树的数据源(必须是json格式,必须有一个根节点)"></param>
+		</function>
+		
+		<function name="showTree" remark="展开或隐藏整棵树">
+			<param name="type" type="String" remark="1表示展开,0表示隐藏"></param>
+		</function>
+		
+		<function name="setTreeBox" remark="让树中的所有复选框被选中或不选">
+			<param name="type" type="String" remark="1表示选中,0表示不选"></param>
+		</function>
+		
+		<function name="setPartTreeBox" remark="让树中的一部分复选框被选中">
+			<param name="selectIds" type="String" remark="树节点的ID(多个用分号隔开)"></param>
+		</function>
+		
+		<function name="getTreeBox" remark="获得树中选择复选框的节点id(如果有多个值,用分号隔开)">
+			<return type="String"></return>
+		</function>
+		
+		<function name="getTreeParentIds" remark="获得当前菜单树节点的ID和所有父节点的ID(如果有多个值,用分号隔开)">
+			<return type="String"></return>
+		</function>
+		
+		<function name="createTree" remark="产生一颗树形菜单(支持异步加载)">
+			<param name="id" type="String" remark="div的ID(这棵树要放在哪个div中)"></param>
+			<param name="treeData" type="String" remark="树的数据源(必须是json格式,必须有一个根节点)"></param>
+			<param name="callback" type="String" remark="异步加载的回调事件"></param>
+		</function>
+	</group>
+	
+	<group remark="对cookie的操作">
+		<function name="getCookie" remark="获得cookie里的值">
+			<param name="key" type="String" remark="键"></param>
+			<return type="String"></return>
+		</function>
+		
+		<function name="setCookie" remark="把字符串保存在cookie里">
+			<param name="key" type="String" remark="键"></param>
+			<param name="value" type="String" remark="值"></param>
+		</function>
+		
+		<function name="delCookie" remark="删除cookie里的值">
+			<param name="key" type="String" remark="键"></param>
+		</function>
+	</group>
+	
+	<group remark="对无刷新分页的操作">
+		<function name="pagination" remark="无刷新分页时处理数字输入的函数(封装在后台，使用在前台)">
+			<param name="pageIndex" type="String" remark="目标页数"></param>
+		</function>
+	</group>
+</root>

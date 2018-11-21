@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+	<bean id="uiFwFunctionDAO" class="com.gfan.report.frame.dao.UiFwFunctionDAOImpl">
+		<property name="sqlMapClientTemplate" ref="sqlMapClientTemplateReport"></property>
+	</bean>
+	
+	<bean id="uiFwModuleDAO" class="com.gfan.report.frame.dao.UiFwModuleDAOImpl">
+		<property name="sqlMapClientTemplate" ref="sqlMapClientTemplateReport"></property>
+	</bean>
+	
+	<bean id="uiFwFunctionWidgetDAO" class="com.gfan.report.frame.dao.UiFwFunctionWidgetDAOImpl">
+		<property name="sqlMapClientTemplate" ref="sqlMapClientTemplateReport"></property>
+	</bean>
+	
+	<bean id="logUserLoginDAO" class="com.gfan.report.log.dao.LogUserLoginDAOImpl">
+		<property name="sqlMapClientTemplate" ref="sqlMapClientTemplateReport"></property>
+	</bean>
+	
+	<bean id="logFunctionClickDAO" class="com.gfan.report.log.dao.LogFunctionClickDAOImpl">
+		<property name="sqlMapClientTemplate" ref="sqlMapClientTemplateReport"></property>
+	</bean>
+	
+	<bean id="logSqlQueryDAO" class="com.gfan.report.log.dao.LogSqlQueryDAOImpl">
+		<property name="sqlMapClientTemplate" ref="sqlMapClientTemplateReport"></property>
+	</bean>
+	
+	<bean id="repQueryDAO" class="com.gfan.report.frame.dao.RepQueryDAOImpl">
+		<property name="sqlMapClientTemplate" ref="sqlMapClientTemplateReport"></property>
+	</bean>
+	
+	<bean id="reportDAO" class="com.gfan.report.frame.dao.ReportDAOImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+	</bean>
+	
+	 <bean id="reportDAODistribute" class="com.gfan.report.frame.dao.ReportDAOImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplateDistribute"></property>
+	</bean> 
+	
+	<bean id="reportDAOUniongame" class="com.gfan.report.frame.dao.ReportDAOImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplateUniongame"></property>
+	</bean>
+	
+	<bean id="reportDAOServcer" class="com.gfan.report.frame.service.ReportDAOServcer">
+		<property name="reportDaos">
+			<map>
+				<entry key="default" value-ref="reportDAO"></entry>
+				 <entry key="distribute" value-ref="reportDAODistribute"></entry> 
+				<entry key="uniongame" value-ref="reportDAOUniongame"></entry>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="repDictDAO" class="com.gfan.report.frame.dao.RepDictDAOImpl">
+		<property name="sqlMapClientTemplate" ref="sqlMapClientTemplateReport"></property>
+	</bean>
+	
+	<bean id="partnerUserDAO" class="com.gfan.report.frame.dao.CorpPartnerUserDAOImpl">
+		<property name="sqlMapClientTemplate" ref="sqlMapClientTemplateReport"></property>
+	</bean>
+	
+	<bean id="userPwdDAO" class="com.gfan.report.frame.dao.UserPwdDAOImpl">
+		<property name="sqlMapClientTemplate" ref="sqlMapClientTemplateReport"></property>
+	</bean>
+	
+	<bean id="loginUserDAO" class="com.gfan.report.frame.dao.UserDAOImpl">
+		<property name="sqlMapClientTemplate" ref="sqlMapClientTemplateReport"></property>
+	</bean>
+	
+	<bean id="userRoleDAO" class="com.gfan.report.frame.dao.PMemberRoleDAOImpl">
+		<property name="sqlMapClientTemplate" ref="sqlMapClientTemplateReport"></property>
+	</bean>
+	
+	<bean id="roleModuleDAO" class="com.gfan.report.frame.dao.UiFwRoleModuleLinkDAOImpl">
+		<property name="sqlMapClientTemplate" ref="sqlMapClientTemplateReport"></property>
+	</bean>
+	
+	<bean id="roleFunctionDAO" class="com.gfan.report.frame.dao.UiFwRoleFunctionLinkDAOImpl">
+		<property name="sqlMapClientTemplate" ref="sqlMapClientTemplateReport"></property>
+	</bean>
+</beans>

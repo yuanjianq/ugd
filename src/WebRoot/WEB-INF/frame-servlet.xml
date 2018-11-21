@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+	<!-- 启动注解驱动的Spring MVC功能，注册请求url和注解POJO类方法的映射 -->
+	<mvc:annotation-driven />
+	<!-- 启动包扫描功能，以便注册带有@Controller、@Service、@repository、@Component等注解的类成为spring的bean -->
+	<context:component-scan base-package="com.gfan.report.frame.controller" />
+	<context:component-scan base-package="com.gfan.report.frame.service" />
+	<!-- 对模型视图名称的解析，在请求时模型视图名称添加前后缀 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/" p:suffix=".jsp" />
+	
+	<mvc:interceptors>
+		<bean class="com.gfan.report.frame.intercepter.SessionIntercepter"></bean>
+	</mvc:interceptors>
+	
+	<import resource="bean-dao.xml"/>
+
+	<context:property-placeholder location="classpath:jdbc.properties" />
+
+	<bean id="dataSourceReport" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="user" value="${jdbc.user.query}"></property>
+		<property name="password" value="${jdbc.password.query}"></property>
+		<property name="jdbcUrl" value="${jdbc.url.query}"></property>
+		<property name="driverClass" value="${jdbc.driverClass.query}"></property>
+		<property name="minPoolSize" value="${c3p0.minPoolSize}"></property>
+		<property name="initialPoolSize" value="${c3p0.initialPoolSize}"></property>
+		<property name="maxPoolSize" value="${c3p0.maxPoolSize}"></property>
+		<property name="acquireIncrement" value="${c3p0.acquireIncrement}"></property>
+		<property name="maxStatements" value="${c3p0.maxStatements}"></property>
+		<property name="maxStatementsPerConnection" value="${c3p0.maxStatementsPerConnection}"></property>
+		<property name="maxIdleTime" value="${c3p0.maxIdleTime}"></property>
+	</bean>
+	
+	 <bean id="dataSourceDistribute" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="user" value="${jdbc.user.query.distribute}"></property>
+		<property name="password" value="${jdbc.password.query.distribute}"></property>
+		<property name="jdbcUrl" value="${jdbc.url.query.distribute}"></property>
+		<property name="driverClass" value="${jdbc.driverClass.query}"></property>
+		<property name="minPoolSize" value="${c3p0.minPoolSize}"></property>
+		<property name="initialPoolSize" value="${c3p0.initialPoolSize}"></property>
+		<property name="maxPoolSize" value="${c3p0.maxPoolSize}"></property>
+		<property name="acquireIncrement" value="${c3p0.acquireIncrement}"></property>
+		<property name="maxStatements" value="${c3p0.maxStatements}"></property>
+		<property name="maxStatementsPerConnection" value="${c3p0.maxStatementsPerConnection}"></property>
+		<property name="maxIdleTime" value="${c3p0.maxIdleTime}"></property>
+	</bean> 
+	
+	<bean id="dataSourceUniongame" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="user" value="${jdbc.user.query.uniongame}"></property>
+		<property name="password" value="${jdbc.password.query.uniongame}"></property>
+		<property name="jdbcUrl" value="${jdbc.url.query.uniongame}"></property>
+		<property name="driverClass" value="${jdbc.driverClass.query}"></property>
+		<property name="minPoolSize" value="${c3p0.minPoolSize}"></property>
+		<property name="initialPoolSize" value="${c3p0.initialPoolSize}"></property>
+		<property name="maxPoolSize" value="${c3p0.maxPoolSize}"></property>
+		<property name="acquireIncrement" value="${c3p0.acquireIncrement}"></property>
+		<property name="maxStatements" value="${c3p0.maxStatements}"></property>
+		<property name="maxStatementsPerConnection" value="${c3p0.maxStatementsPerConnection}"></property>
+		<property name="maxIdleTime" value="${c3p0.maxIdleTime}"></property>
+	</bean>
+	
+	<bean id="sqlMapClientReport" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">  
+        <property name="configLocation">  <!-- name 为configLocation不可为其他 -->  
+            <value>classpath:SqlMapConfigReport.xml</value> <!-- 不区分大小写，路径前可加'/' -->  
+        </property>  
+        <property name="dataSource">  
+            <ref local="dataSourceReport" />  
+        </property>  
+    </bean> 
+     <bean id="sqlMapClientDistribute" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">  
+        <property name="configLocation"> <!-- name 为configLocation不可为其他  --> 
+            <value>classpath:SqlMapConfigDistribute.xml</value> <!-- 不区分大小写，路径前可加'/'   -->
+        </property>  
+        <property name="dataSource">  
+            <ref local="dataSourceDistribute" />  
+        </property>  
+    </bean> 
+     <bean id="sqlMapClientUniongame" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">  
+        <property name="configLocation">  <!-- name 为configLocation不可为其他   -->
+            <value>classpath:SqlMapConfigUniongame.xml</value> <!-- 不区分大小写，路径前可加'/'  --> 
+        </property>  
+        <property name="dataSource">  
+            <ref local="dataSourceUniongame" />  
+        </property>  
+    </bean> 
+	
+	<bean id="sqlMapClientTemplateReport" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
+		<property name="sqlMapClient" ref="sqlMapClientReport"></property>
+	</bean>
+	
+	<bean id="sqlMapClientTemplateDistribute" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
+		<property name="sqlMapClient" ref="sqlMapClientDistribute"></property>
+	</bean> 
+	
+	<bean id="sqlMapClientTemplateUniongame" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
+		<property name="sqlMapClient" ref="sqlMapClientUniongame"></property>
+	</bean>
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+		<constructor-arg index="0" ref="dataSourceReport" />
+	</bean>
+	
+	<bean id="jdbcTemplateDistribute" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+		<constructor-arg index="0" ref="dataSourceDistribute" />
+	</bean>
+	
+	<bean id="jdbcTemplateUniongame" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+		<constructor-arg index="0" ref="dataSourceUniongame" />
+	</bean>
+	
+</beans>

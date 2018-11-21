@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+	<allow>
+		<create javascript="RptManager" creator="spring">
+            <param name="beanName" value="reportServer"></param>
+        </create>
+	</allow>
+</dwr>
